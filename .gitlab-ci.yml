@@ -38,9 +38,12 @@ pages:
       - build:gradle
 
     script:
-      - mv build/reports/tests/ public/
-      - mv build/reports/checkstyle/ public/
-      - mv build/jacocoHtml public/
+      - pwd
+      - mv ./build/reports/tests/ public/
+      - mv ./build/reports/checkstyle/ public/
+      - mv ./build/jacocoHtml/ public/
+      - pwd
+      - ls -lR
 
 
     artifacts:
