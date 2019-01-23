@@ -41,7 +41,7 @@ pages:
       - mv ./build/reports/checkstyle/ public
       - mv ./build/jacocoHtml/ public
       - pwd
-      - ls -lR
+      - ls -lR public
 
     artifacts:
       paths:
