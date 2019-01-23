@@ -49,7 +49,7 @@ pages:
       - cp -r ./build/reports/checkstyle/ .public
       - cp -r ./build/jacocoHtml/ .public
       - ls -lR .public
-      - mv .public public
+      - mv .public ./public
       - pwd
       - ls -lR
 
