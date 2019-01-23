@@ -47,7 +47,7 @@ pages:
       - cp -r ./build/reports/tests/ .public
       - cp -r ./build/reports/checkstyle/ .public
       - cp -r ./build/jacocoHtml .public
-      - mv .public public/test
+      - mv .public public
       - ls -lR ./public
 
     artifacts:
