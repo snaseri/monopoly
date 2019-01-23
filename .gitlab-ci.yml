@@ -1,5 +1,10 @@
 image: openjdk:10-jdk
 
+stages:
+    - build
+    - publish
+    - deploy
+
 before_script:
   - echo $GRADLE_HOME
   - echo `pwd`
@@ -25,3 +30,28 @@ build:gradle:
     - ./build/reports/checkstyle/
     - ./build/jacocoHtml
     expire_in: 1 week
+
+pages:
+    stage: publish
+
+    script:
+      - echo 'Copy test results'
+      - pwd
+      - echo 'Files'
+      - echo '-----'
+      - ls -lR
+      - mkdir .public
+      - cd .public
+      - echo "<HTML><HEAD></HEAD><BODY><H1>Latest Test Report</H1><DIV><A href=./tests/test/>Results</A></DIV></BODY></HTML>" > index.html
+      - cd ..
+      - cp -r ./build/reports/tests/ .public
+      - cp -r ./build/reports/checkstyle/ .public
+      - cp -r ./build/jacocoHtml .public
+      - mv .public public/test
+      - ls -lR ./public
+
+    artifacts:
+      paths:
+        - public
+    only:
+      - master
