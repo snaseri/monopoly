@@ -1,4 +1,4 @@
-image: java:8-jdk
+image: openjdk:10-jdk
 
 before_script:
   - echo $GRADLE_HOME
@@ -11,6 +11,17 @@ cache:
   paths:
     - .gradle/wrapper
     - .gradle/caches
-build:
+
+build:gradle:
+  stage: build
+  only:
+    - master
   script:
-    - ./gradlew build
+    - ./gradlew buildAndReport
+  artifacts:
+    name: "$CI_JOB_NAME"
+    paths:
+    - ./build/reports/tests/
+    - ./build/reports/checkstyle/
+    - ./build/jacocoHtml
+    expire_in: 1 week
