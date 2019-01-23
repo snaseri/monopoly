@@ -48,7 +48,7 @@ pages:
       - cp -r ./build/reports/checkstyle/ .public
       - cp -r ./build/jacocoHtml .public
       - mv .public public
-      - ls -lR ./public
+      - ls -lR
 
     artifacts:
       paths:
