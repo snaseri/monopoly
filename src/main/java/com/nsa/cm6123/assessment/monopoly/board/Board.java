@@ -55,14 +55,17 @@ public class Board {
         return boardSquares;
     }
 
+    // a method to get all the squares created and added to the board/the arraylist
     public int getTotalSquareCreated(){
         return boardtiles.size();
     }
 
+    // Gets the nth square of the board
     public Square getSquareByPosition(int index){
         return boardtiles.get(index);
     }
 
+    // Gets the first starting square of the board
     public Square getStartSquare(){
         return boardtiles.get(0);
     }
