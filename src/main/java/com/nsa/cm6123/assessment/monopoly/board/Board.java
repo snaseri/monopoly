@@ -38,17 +38,29 @@ public class Board {
             throw new IllegalArgumentException("Minimum Size is 2 x 2 ");
         }
 
-
+        //Adding a tile for each tile their should be on the board depending on its size
+        for (int i=0; i < boardSquares; i++){
+            Square square = new Square(i);
+            boardtiles.add(square);
+        }
 
 
     }
 
 // Methods
-    public int getSquares(){
+    public int getBoardSize(){
         //Finding out the perimeter of the rectangle to work out the number of squares.
-
+        int boardSquares = (2*width) + (2*length);
         LOGGER.info("Number of squares: " + boardSquares);
         return boardSquares;
+    }
+
+    public int getTotalSquareCreated(){
+        return boardtiles.size();
+    }
+
+    public Square getSquareByPosition(int index){
+        return boardtiles.get(index);
     }
 
 

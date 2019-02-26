@@ -10,16 +10,21 @@ public class BoardTest {
     @Test
     public void checkBoardPerimeterFormula() throws Exception {
         Board board = new Board(2,2);
-        System.out.println("BOARD SQUAERS ARE " + board.getSquares());
-        assertEquals(8, board.getSquares());
+        assertEquals(8, board.getBoardSize());
     }
 
     @Test
     public void checkNumberOfBoardSquaresCreated() throws Exception {
         Board board = new Board(2,2);
-        System.out.println("BOARD SQUAERS ARE " + board.getSquares());
-        assertEquals(8, boardtiles.size());
+        assertEquals(8, board.getTotalSquareCreated());
     }
 
+    @Test
+    public void checkSquarePositions() throws Exception {
+        Board board = new Board(2,2);
+        Square square = new Square(4);
+        System.out.println(board.getSquareByPosition(4).getPosition());
+        assertEquals(square.getPosition(),board.getSquareByPosition(4).getPosition());
+    }
 
 }

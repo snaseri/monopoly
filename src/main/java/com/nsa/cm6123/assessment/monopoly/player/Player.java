@@ -1,4 +1,4 @@
-package com.nsa.cm6123.assessment.monopoly;
+package com.nsa.cm6123.assessment.monopoly.player;
 
 import java.io.IOException;
 import java.io.InputStream;
