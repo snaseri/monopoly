@@ -63,6 +63,9 @@ public class Board {
         return boardtiles.get(index);
     }
 
+    public Square getStartSquare(){
+        return boardtiles.get(0);
+    }
 
 
 }

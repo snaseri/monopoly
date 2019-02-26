@@ -27,4 +27,10 @@ public class BoardTest {
         assertEquals(square.getPosition(),board.getSquareByPosition(4).getPosition());
     }
 
+    @Test
+    public void checkBoardStartIsAtCorrectPlace() throws Exception {
+        Board board = new Board(11,11);
+        assertEquals(0, board.getStartSquare().getPosition());
+    }
+
 }

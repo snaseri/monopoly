@@ -3,7 +3,6 @@ package com.nsa.cm6123.assessment.monopoly;
 import com.nsa.cm6123.assessment.monopoly.player.Player;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 public class PlayerTest {
@@ -48,7 +47,7 @@ public class PlayerTest {
         topHat.setBalance(100L);
 //        assertEquals(half, topHat.getBalance());
 
-        assertEquals(100L, topHat.getBalance());git
+        assertEquals(100L, topHat.getBalance());
 
     }
 
