@@ -71,4 +71,29 @@ public class PlayerTest {
         Player topHat2 = new Player("Top Hat");
         assertEquals(topHat.hashCode(), topHat2.hashCode());
     }
+
+    @Test
+    public void checkSetPosition() {
+        Player player = new Player("Top Hat", 200L,6);
+        player.setPosition(3);
+        assertEquals(3,player.getPosition());
+    }
+
+    @Test
+    public void checkPlayerGetPositionMethod() {
+        Player topHat = new Player("Top Hat", 200L,6);
+        assertEquals(6,topHat.getPosition());
+    }
+
+    @Test
+    public void playerMove() {
+        Player topHat = new Player("Top Hat", 200L,0);
+        int dice_num = 3;
+        int new_position = topHat.getPosition() + dice_num;
+        topHat.setPosition(new_position);
+        assertEquals(3,topHat.getPosition());
+    }
+
+
+
 }

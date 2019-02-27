@@ -2,11 +2,13 @@ package com.nsa.cm6123.assessment.monopoly.board;
 
 public class Square {
 
-    int position;
+    private int position;
         // SQUARE CONSTRUCTOR
-    public Square(int position){
-        this.position = position;
+    public Square(final int aPosition) {
+        this.position = aPosition;
     }
+
+
 // METHODS
     // Gets the board position of the square
     public int getPosition() {

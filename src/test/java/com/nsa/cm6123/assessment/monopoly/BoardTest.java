@@ -1,4 +1,4 @@
-package com.nsa.cm6123.assessment.monopoly.Board;
+package com.nsa.cm6123.assessment.monopoly;
 
 import com.nsa.cm6123.assessment.monopoly.board.Board;
 import com.nsa.cm6123.assessment.monopoly.board.Square;
@@ -29,6 +29,12 @@ public class BoardTest {
 
     @Test
     public void checkBoardStartIsAtCorrectPlace() throws Exception {
+        Board board = new Board(11,11);
+        assertEquals(0, board.getStartSquare().getPosition());
+    }
+
+    @Test
+    public void checkSquaresCreatedMustEqualToBoardSize() throws Exception {
         Board board = new Board(11,11);
         assertEquals(0, board.getStartSquare().getPosition());
     }

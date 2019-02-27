@@ -3,7 +3,6 @@ package com.nsa.cm6123.assessment.monopoly.player;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
-import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
@@ -11,16 +10,20 @@ public class Player {
 
 
     // Add this block to the start of each class that you wish to log.
-    // It is not elegant by any means, but I don't want to drag in more dependencies to get a
+    // It is not elegant by any means, but I don't want
+    // to drag in more dependencies to get a
     // better framework
 
-    private static Logger LOGGER = null;
+    private static Logger logger = null;
 
     static {
-        InputStream stream = Player.class.getClassLoader().getResourceAsStream("logging.properties"); //replace Player with the name of the class
+        InputStream stream = Player.class.getClassLoader().
+                getResourceAsStream("logging.properties");
+        //replace Player with the name of the class
         try {
             LogManager.getLogManager().readConfiguration(stream);
-            LOGGER = Logger.getLogger(Player.class.getName());//replace Player with the name of the class
+            logger = Logger.getLogger(Player.class.getName());
+            //replace Player with the name of the class
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,26 +33,31 @@ public class Player {
 
     private String token;
     private long balance;
+    private int position;
 
     private static final long STARTING_BALANCE = 200L;
 
 
-    public Player(final String aToken, final long aBalance) {
+    public Player(final String aToken, final long aBalance,
+                  final int aPosition) {
         this.token = aToken;
         this.balance = aBalance;
-        LOGGER.info("Player created: Token = " + token + ", aBalance = " + balance); // you can log like this using the methods, or...
-        LOGGER.log(Level.INFO, "Player created: Token = " + token + ", aBalance = " + balance); // like this, specifying the level as a parameter
+        this.position = aPosition;
+        logger.info("Player created: Token = " + token
+                + ", aBalance = " + balance);
+        // you can log like this using the methods, or...
         // pick one and be consistent.
 
     }
 
 
+// Player Methods
     public Player(final String aToken) {
-        this(aToken, STARTING_BALANCE);
+        this(aToken, STARTING_BALANCE, 0);
     }
 
     public Player() {
-        this("Top Hat");
+        this("Top Hat", STARTING_BALANCE, 0);
     }
 
     public String getToken() {
@@ -66,6 +74,25 @@ public class Player {
 
     public void setBalance(final long aBalance) {
         this.balance = aBalance;
+    }
+
+    public void rollAndMove() {
+        Dice dice = new Dice();
+        int n = dice.roll();
+        position = position + n;
+        }
+
+//    public Square getCurrentSquare(){
+//
+//    }
+
+    public int getPosition() {
+        return position;
+    }
+
+
+    public void setPosition(final int newPosition) {
+        position = newPosition;
     }
 
     @Override
