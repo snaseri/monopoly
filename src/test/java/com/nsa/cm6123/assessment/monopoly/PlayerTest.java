@@ -74,20 +74,20 @@ public class PlayerTest {
 
     @Test
     public void checkSetPosition() {
-        Player player = new Player("Top Hat", 200L, 6);
+        Player player = new Player("Top Hat", 200L, 6,0);
         player.setPosition(3);
         assertEquals(3, player.getPosition());
     }
 
     @Test
     public void checkPlayerGetPositionMethod() {
-        Player topHat = new Player("Top Hat", 200L, 6);
+        Player topHat = new Player("Top Hat", 200L, 6,0);
         assertEquals(6, topHat.getPosition());
     }
 
     @Test
     public void playerMove() {
-        Player topHat = new Player("Top Hat", 200L, 0);
+        Player topHat = new Player("Top Hat", 200L, 0,0);
         int dice_num = 3;
         int new_position = topHat.getPosition() + dice_num;
         topHat.setPosition(new_position);
@@ -96,12 +96,23 @@ public class PlayerTest {
 
     @Test
     public void rollAndMoveFullBoardLoop() {
-        Player player = new Player("Dog", 200L, 24);
+        Player player = new Player("Dog", 200L, 24,0);
         assertEquals(true, player.rollAndMove());
     }
 
     @Test
     public void rollAndMoveNotFullBoardLoop() {
         assertEquals(false, topHat.rollAndMove());
+    }
+
+    @Test
+    public void getPasses() {
+        assertEquals(0, topHat.getPasses());
+    }
+
+    @Test
+    public void setPasses() {
+        topHat.setPasses(2);
+        assertEquals(2, topHat.getPasses());
     }
 }

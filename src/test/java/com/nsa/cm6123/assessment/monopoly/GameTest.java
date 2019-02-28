@@ -42,6 +42,6 @@ public class GameTest {
     @Test
     public void loopAroundBoard() throws Exception {
         game.loopAroundBoard(1);
-        assertEquals("Dog", "Dog");
+        assertEquals(1, game.getPlayers().get(0).getPasses());
     }
 }

@@ -12,6 +12,12 @@ import java.util.logging.Logger;
 
 public class Game {
 
+    private final int player1ListIndex = 0;
+    private final int player2ListIndex = 1;
+    private final int player3ListIndex = 2;
+    private final int player4ListIndex = 3;
+
+    private int loop;
     private final int width = 5;
     private final int length = 5;
     private Board board = new Board(width, length);
@@ -54,14 +60,29 @@ public class Game {
         return players.get(num);
     }
 
-    public Board getBoard(){
+    public Board getBoard() {
         return board;
     }
+    public void loopAroundBoard(final int numOfLoops) {
+        while (loop < numOfLoops) {
 
+            for (Player player : players) {
+                if (!player.rollAndMove()) {
+                    continue;
 
-
-
-
-
+                } else {
+                    int playerPasses = player.getPasses() + 1;
+                    player.setPasses(playerPasses);
+                }
+            }
+            if (players.get(player1ListIndex).getPasses() == numOfLoops &&
+                players.get(player2ListIndex).getPasses() == numOfLoops &&
+                players.get(player3ListIndex).getPasses() == numOfLoops &&
+                players.get(player4ListIndex).getPasses() == numOfLoops) {
+                break;
+            }
+        }
+    }
 }
+
 

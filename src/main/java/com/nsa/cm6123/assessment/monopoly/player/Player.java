@@ -35,15 +35,18 @@ public class Player {
     private long balance;
     private int position;
     private final int boardSize = 25;
+    private int pass;
 
     private static final long STARTING_BALANCE = 200L;
 
 
     public Player(final String aToken, final long aBalance,
-                  final int aPosition) {
+                  final int aPosition, final int aPass) {
         this.token = aToken;
         this.balance = aBalance;
         this.position = aPosition;
+        //pass checks to see how many times a player has been around a board
+        this.pass = aPass;
         logger.info("Player created: Token = " + token
                 + ", aBalance = " + balance);
         // you can log like this using the methods, or...
@@ -54,11 +57,11 @@ public class Player {
 
 // Player Methods
     public Player(final String aToken) {
-        this(aToken, STARTING_BALANCE, 0);
+        this(aToken, STARTING_BALANCE, 0, 0);
     }
 
     public Player() {
-        this("Top Hat", STARTING_BALANCE, 0);
+        this("Top Hat", STARTING_BALANCE, 0, 0);
     }
 
     public String getToken() {
@@ -77,18 +80,27 @@ public class Player {
         this.balance = aBalance;
     }
 
+    public int getPasses() {
+        return pass;
+    }
+
+    public void setPasses(final int num) {
+        this.pass = num;
+    }
+
     // this method returns true if player has gone around the board
     public boolean rollAndMove() {
         Dice dice = new Dice();
         int n = dice.roll();
         position = position + n;
-        if (position > boardSize ){
+        if (position > boardSize) {
             position = position - boardSize;
-            logger.info("Player " + token +
-                    "has looped around the board");
 
             logger.info("Player with Token " + token + " rolled a "
                     + n + " and now is on Square position " + position);
+
+            logger.info("Player " + token +
+                    " has looped around the board");
 
             return true;
         } else {

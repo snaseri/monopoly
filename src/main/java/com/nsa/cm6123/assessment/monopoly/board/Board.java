@@ -66,7 +66,7 @@ public class Board {
     }
 
     // Gets the nth square of the board
-    public Square getSquareByPosition(final int index) {
+    public Square getSquarePosition(final int index) {
         return boardtiles.get(index);
     }
 

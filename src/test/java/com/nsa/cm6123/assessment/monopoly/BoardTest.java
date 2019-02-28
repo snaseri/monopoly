@@ -23,8 +23,7 @@ public class BoardTest {
     public void checkSquarePositions() throws Exception {
         Board board = new Board(2,2);
         Square square = new Square(4);
-        System.out.println(board.getSquareByPosition(4).getPosition());
-        assertEquals(square.getPosition(),board.getSquareByPosition(4).getPosition());
+        assertEquals(square.getPosition(),board.getSquarePosition(4).getPosition());
     }
 
     @Test
