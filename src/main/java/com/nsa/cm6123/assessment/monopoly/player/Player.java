@@ -57,7 +57,8 @@ public class Player {
 
 // Player Methods
 
-    public Player(final String aToken, final long aBalance, final int aPosition) {
+    public Player(final String aToken, final long aBalance,
+                  final int aPosition) {
         this(aToken, STARTING_BALANCE,  aPosition, 0);
     }
 

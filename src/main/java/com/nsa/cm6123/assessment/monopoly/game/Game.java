@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 public class Game {
 
+    private final long circutReward = 200L;
     private final int player1ListIndex = 0;
     private final int player2ListIndex = 1;
     private final int player3ListIndex = 2;
@@ -73,6 +74,7 @@ public class Game {
                 } else {
                     int playerPasses = player.getPasses() + 1;
                     player.setPasses(playerPasses);
+                    player.setBalance(player.getBalance() + circutReward);
                 }
             }
             if (players.get(player1ListIndex).getPasses() == numOfLoops &&

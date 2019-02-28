@@ -44,4 +44,10 @@ public class GameTest {
         game.loopAroundBoard(1);
         assertEquals(1, game.getPlayers().get(0).getPasses());
     }
+
+    @Test
+    public void add200BalanceAfterCircut() throws Exception {
+        game.loopAroundBoard(1);
+        assertEquals(400, game.getPlayers().get(0).getBalance());
+    }
 }
