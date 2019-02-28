@@ -5,12 +5,26 @@ import com.nsa.cm6123.assessment.monopoly.player.Player;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class Board {
 
-//    private ArrayList<String> = new ArrayList<>(Arrays.asList());
+    //predefining location names for the board generation
+    private ArrayList<String> locationNames = new
+   ArrayList<>(Arrays.asList("Start",
+/*Brown*/   "Old Kent Road", "Whitechapel Road",
+            "King's Cross station",
+/*LBlue*/   "The Angel, Islington", "Euston Road", "Pentonville Road",
+/*PINK*/    "Pall Mall", "Whitehall", "Northumberland Avenue",
+/*Orange*/  "Bow Street", "Marlborough Street", "Vine Street",
+/*Red*/     "Strand", "Fleet Street", "Trafalgar Square",
+/*Yellow*/  "Leicester Square", "Coventry Street", "Piccadilly",
+/*Green*/   "Regent Street", "Oxford Street", "Bond Street",
+/*DBlue*/   "Park Lane", "Mayfair"
+    ));
+
     private int boardSquares;
     private final int width;
     private final int length;
@@ -46,7 +60,9 @@ public class Board {
             //Adding a tile for each tile their should be on the
             // board depending on its size
             for (int i = 0; i < boardSquares; i++) {
-                Square square = new Square(i);
+                String locNames = locationNames.get(i);
+                Location location = new Location(locNames);
+                Square square = new Square(i, location);
                 boardtiles.add(square);
             }
         }
@@ -59,22 +75,14 @@ public class Board {
         // to work out the number of squares.
         return boardSquares;
     }
-
     // a method to get all the squares created
-    // and added to the board/the arraylist
-    public int getTotalSquareCreated() {
-        return boardtiles.size();
+    // as an ArrayList
+    public ArrayList<Square> getAllSquareCreated() {
+        return boardtiles;
     }
 
-    // Gets the nth square of the board
-    public Square getSquarePosition(final int index) {
-        return boardtiles.get(index);
-    }
-
-    // Gets the first starting square of the board
-    public Square getStartSquare() {
-
-        return boardtiles.get(0);
+    public ArrayList<String> getLocationNames() {
+        return locationNames;
     }
 
 

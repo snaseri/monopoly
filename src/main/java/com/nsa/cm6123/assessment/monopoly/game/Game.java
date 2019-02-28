@@ -19,8 +19,8 @@ public class Game {
     private final int player4ListIndex = 3;
 
     private int loop;
-    private final int width = 5;
-    private final int length = 5;
+    private final int width = 6;
+    private final int length = 6;
     private Board board = new Board(width, length);
 
 

@@ -34,7 +34,7 @@ public class Player {
     private String token;
     private long balance;
     private int position;
-    private final int boardSize = 25;
+    private final int boardSize = 24;
     private int pass;
 
     private static final long STARTING_BALANCE = 200L;

@@ -16,28 +16,19 @@ public class BoardTest {
     @Test
     public void checkNumberOfBoardSquaresCreated() throws Exception {
         Board board = new Board(2,2);
-        assertEquals(8, board.getTotalSquareCreated());
+        assertEquals(8, board.getAllSquareCreated().size());
     }
 
     @Test
-    public void checkSquarePositions() throws Exception {
+    public void getAllSquaresCreatedSquarePosition() throws Exception {
         Board board = new Board(2,2);
-        Square square = new Square(4);
-        assertEquals(square.getPosition(),board.getSquarePosition(4).getPosition());
+        assertEquals(4,board.getAllSquareCreated().get(4).getPosition());
     }
 
     @Test
-    public void checkBoardStartIsAtCorrectPlace() throws Exception {
-        Board board = new Board(11,11);
-        assertEquals(0, board.getStartSquare().getPosition());
+    public void getAllSquaresCreatedSize() throws Exception {
+        Board board = new Board(6,6);
+        assertEquals(24, board.getAllSquareCreated().size());
     }
-
-    @Test
-    public void checkSquaresCreatedMustEqualToBoardSize() throws Exception {
-        Board board = new Board(11,11);
-        assertEquals(0, board.getStartSquare().getPosition());
-    }
-
-
 
 }
