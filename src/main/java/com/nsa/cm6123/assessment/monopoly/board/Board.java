@@ -39,13 +39,15 @@ public class Board {
 
         if (width <= 1 || length <= 1) {
             throw new IllegalArgumentException("Minimum Size is 2 x 2 ");
-        }
-
-        //Adding a tile for each tile their should be on the
-        // board depending on its size
-        for (int i = 0; i < boardSquares; i++) {
-            Square square = new Square(i);
-            boardtiles.add(square);
+        } else {
+            logger.info("Board created:  = length: " + aLength
+                    + ", Width = " + aWidth);
+            //Adding a tile for each tile their should be on the
+            // board depending on its size
+            for (int i = 0; i < boardSquares; i++) {
+                Square square = new Square(i);
+                boardtiles.add(square);
+            }
         }
 
     }

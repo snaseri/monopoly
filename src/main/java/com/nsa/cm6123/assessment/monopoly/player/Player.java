@@ -34,6 +34,7 @@ public class Player {
     private String token;
     private long balance;
     private int position;
+    private final int boardSize = 25;
 
     private static final long STARTING_BALANCE = 200L;
 
@@ -76,10 +77,26 @@ public class Player {
         this.balance = aBalance;
     }
 
-    public void rollAndMove() {
+    // this method returns true if player has gone around the board
+    public boolean rollAndMove() {
         Dice dice = new Dice();
         int n = dice.roll();
         position = position + n;
+        if (position > boardSize ){
+            position = position - boardSize;
+            logger.info("Player " + token +
+                    "has looped around the board");
+
+            logger.info("Player with Token " + token + " rolled a "
+                    + n + " and now is on Square position " + position);
+
+            return true;
+        } else {
+            logger.info("Player with Token " + token + " rolled a "
+                    + n + " and now is on Square position " + position);
+            return false;
+        }
+
         }
 
 //    public Square getCurrentSquare(){

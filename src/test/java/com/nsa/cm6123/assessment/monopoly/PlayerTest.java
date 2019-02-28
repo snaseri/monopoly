@@ -74,26 +74,34 @@ public class PlayerTest {
 
     @Test
     public void checkSetPosition() {
-        Player player = new Player("Top Hat", 200L,6);
+        Player player = new Player("Top Hat", 200L, 6);
         player.setPosition(3);
-        assertEquals(3,player.getPosition());
+        assertEquals(3, player.getPosition());
     }
 
     @Test
     public void checkPlayerGetPositionMethod() {
-        Player topHat = new Player("Top Hat", 200L,6);
-        assertEquals(6,topHat.getPosition());
+        Player topHat = new Player("Top Hat", 200L, 6);
+        assertEquals(6, topHat.getPosition());
     }
 
     @Test
     public void playerMove() {
-        Player topHat = new Player("Top Hat", 200L,0);
+        Player topHat = new Player("Top Hat", 200L, 0);
         int dice_num = 3;
         int new_position = topHat.getPosition() + dice_num;
         topHat.setPosition(new_position);
-        assertEquals(3,topHat.getPosition());
+        assertEquals(3, topHat.getPosition());
     }
 
+    @Test
+    public void rollAndMoveFullBoardLoop() {
+        Player player = new Player("Dog", 200L, 24);
+        assertEquals(true, player.rollAndMove());
+    }
 
-
+    @Test
+    public void rollAndMoveNotFullBoardLoop() {
+        assertEquals(false, topHat.rollAndMove());
+    }
 }

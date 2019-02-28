@@ -39,4 +39,6 @@ public class BoardTest {
         assertEquals(0, board.getStartSquare().getPosition());
     }
 
+
+
 }
