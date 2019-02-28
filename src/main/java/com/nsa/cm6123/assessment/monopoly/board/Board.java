@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 public class Board {
 
+//    private ArrayList<String> = new ArrayList<>(Arrays.asList());
     private int boardSquares;
     private final int width;
     private final int length;

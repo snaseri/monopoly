@@ -96,7 +96,7 @@ public class PlayerTest {
 
     @Test
     public void rollAndMoveFullBoardLoop() {
-        Player player = new Player("Dog", 200L, 24,0);
+        Player player = new Player("Dog", 200L, 25,0);
         assertEquals(true, player.rollAndMove());
     }
 
