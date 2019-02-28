@@ -56,6 +56,15 @@ public class Player {
 
 
 // Player Methods
+
+    public Player(final String aToken, final long aBalance, final int aPosition) {
+        this(aToken, STARTING_BALANCE,  aPosition, 0);
+    }
+
+    public Player(final String aToken, final long aBalance) {
+        this(aToken, STARTING_BALANCE,  0, 0);
+    }
+
     public Player(final String aToken) {
         this(aToken, STARTING_BALANCE, 0, 0);
     }
@@ -63,6 +72,7 @@ public class Player {
     public Player() {
         this("Top Hat", STARTING_BALANCE, 0, 0);
     }
+
 
     public String getToken() {
         return token;
