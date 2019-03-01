@@ -1,6 +1,7 @@
 package com.nsa.cm6123.assessment.monopoly;
 
 import com.nsa.cm6123.assessment.monopoly.game.Game;
+import com.nsa.cm6123.assessment.monopoly.player.Player;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -8,11 +9,15 @@ import static org.junit.Assert.assertEquals;
 public class GameTest {
 
     private Game game;
+    private Player player1;
+    private Player player2;
 
     @Before
     public void constructGameAndGeneratePlayers() {
         game = new Game();
         game.generatePlayers();
+        player1 = game.getPlayer(0);
+        player2 = game.getPlayer(1);
 
     }
 
@@ -24,7 +29,7 @@ public class GameTest {
 
     @Test
     public void getPlayer() throws Exception {
-        assertEquals("Dog", game.getPlayer(1).getToken());
+        assertEquals("Dog", player2.getToken());
     }
 
     @Test
@@ -40,32 +45,72 @@ public class GameTest {
 
     @Test
     public void add200BalanceAfterCircut() throws Exception {
-        game.circutReward(game.getPlayer(0));
+        game.circutReward(player1);
         assertEquals(400, game.getPlayers().get(0).getBalance());
     }
 
     @Test
     public void propertyPurchase() throws Exception {
-        game.getPlayer(0).setPosition(1);
+        player1.setPosition(1);
         game.propertyPurchase();
-        assertEquals(140, game.getPlayer(0).getBalance());
+        assertEquals(140, player1.getBalance());
     }
 
     @Test
     public void PurchasedPropertyIsntBoughtByAnotherPlayer() throws Exception {
-        game.getPlayer(0).setPosition(1);
+        player1.setPosition(1);
         game.propertyPurchase();
-        game.getPlayer(1).setPosition(1);
+        player2.setPosition(1);
         game.propertyPurchase();
-        assertEquals(200, game.getPlayer(1).getBalance());
+        assertEquals(188, player2.getBalance());
     }
 
     @Test
     public void startSquareCannotBePurchased() throws Exception {
-        game.getPlayer(0).setPosition(0);
+        player1.setPosition(0);
         game.propertyPurchase();
         assertEquals(game.getBoard().getSquareByPosition(0).getLocation().
                 getOwner().getToken(), "Start");
+    }
+
+    @Test
+    public void checkpayRentTenantsBalance() throws Exception {
+        player1.setPosition(1);
+        game.propertyPurchase();
+        player2.setPosition(1);
+        game.payRent(player1,player2);
+        assertEquals(188, player2.getBalance());
+    }
+
+    @Test
+    public void checkpayRentOwnersBalance() throws Exception {
+        player1.setPosition(1);
+        game.propertyPurchase();
+        player1.setBalance(0);
+        player2.setPosition(1);
+        game.payRent(player1,player2);
+        assertEquals(12, player1.getBalance());
+    }
+
+
+    @Test
+    public void checkTenantDoesntPurchaseProperty() throws Exception {
+        player1.setPosition(1);
+        game.propertyPurchase();
+        player2.setPosition(1);
+        game.propertyPurchase();
+        assertEquals(game.getBoard().getSquareByPosition(1).getLocation().getOwner(),
+                player1);
+    }
+
+    @Test
+    public void noRentPayedToStartSquare() throws Exception {
+        player1.setPosition(0);
+        game.propertyPurchase();
+        player2.setPosition(0);
+        game.propertyPurchase();
+        assertEquals(200,
+                player2.getBalance());
     }
 
 }

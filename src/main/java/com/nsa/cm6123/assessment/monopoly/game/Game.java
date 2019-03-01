@@ -18,6 +18,8 @@ public class Game {
     private final int player3ListIndex = 2;
     private final int player4ListIndex = 3;
 
+    private final int rentDivder = 5;
+
     private int loop;
     private final int width = 6;
     private final int length = 6;
@@ -61,6 +63,14 @@ public class Game {
         return players.get(num);
     }
 
+    public void payRent(final Player owner,
+                        final Player tenant) {
+        long rentValue = board.getSquareByPosition(tenant.getPosition()).
+                getLocation().getValue() / rentDivder;
+        tenant.setBalance(tenant.getBalance() - rentValue);
+        owner.setBalance(owner.getBalance() + rentValue);
+    }
+
     // This method checks to see if the square that the
     // player is on doesn't have a owner and the player
     // has enough money to purchase
@@ -80,9 +90,28 @@ public class Game {
                 board.getSquareByPosition(player.getPosition()).
                         getLocation().getName() +
                 " and now has a balance of " + player.getBalance());
+          //Else if checks to see if the property is owned by a player
+          //who is not himself or the start square.
+            } else if (!
+                    board.getSquareByPosition(player.getPosition())
+                            .getLocation().getOwner().
+                            getToken().equalsIgnoreCase("None") &&
+                    !board.getSquareByPosition(player.getPosition())
+                            .getLocation().getOwner().getToken()
+                            .equalsIgnoreCase("Start") &&
+            !board.getSquareByPosition(player.getPosition())
+                    .getLocation().getOwner().
+                    equals(player)) {
+                this.payRent(board.getSquareByPosition(player.getPosition())
+                                .getLocation().getOwner(), player);
+                logger.info("Player " + player.getToken()
+                        + " has payed rent to "
+                + board.getSquareByPosition(player.getPosition())
+                        .getLocation().getOwner().getToken());
             }
         }
     }
+
 
     public Board getBoard() {
         return board;
