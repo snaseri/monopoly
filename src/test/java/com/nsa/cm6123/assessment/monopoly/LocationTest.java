@@ -3,6 +3,7 @@ package com.nsa.cm6123.assessment.monopoly;
 import com.nsa.cm6123.assessment.monopoly.board.Location;
 import com.nsa.cm6123.assessment.monopoly.board.Square;
 import com.nsa.cm6123.assessment.monopoly.board.Board;
+import com.nsa.cm6123.assessment.monopoly.player.Player;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -59,4 +60,19 @@ public class LocationTest {
     public void checkRandomSquareValue() throws Exception {
         assertEquals(100, board.getAllSquareCreated().get(5).getLocation().getValue());
     }
+
+    @Test
+    public void getOwner() throws Exception {
+        assertEquals("None", square.getLocation().getOwner().getToken());
+    }
+
+    @Test
+    public void setOwner() throws Exception {
+        Player player = new Player();
+        square.getLocation().setOwner(player);
+        assertEquals(player, square.getLocation().getOwner());
+    }
+
+
+
 }

@@ -69,6 +69,8 @@ public class Game {
 
             for (Player player : players) {
                 if (!player.rollAndMove()) {
+                    board.getAllSquareCreated().get(
+                            player.getPosition()).getLocation();
                     continue;
 
                 } else {
