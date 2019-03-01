@@ -15,7 +15,7 @@ public class LocationTest {
 
     @Before
     public void squareAndLocationConstructor(){
-        start = new Location("Start");
+        start = new Location("Start", 0L);
         square = new Square(0,  start);
         board = new Board(6, 6);
     }
@@ -43,5 +43,20 @@ public class LocationTest {
     @Test
     public void checkRandomLocationName2() throws Exception {
         assertEquals("Start",board.getLocationNames().get(0));
+    }
+    @Test
+    public void getValue() throws Exception {
+        assertEquals(0, square.getLocation().getValue());
+    }
+
+    @Test
+    public void setValue() throws Exception {
+        square.getLocation().setValue(500);
+        assertEquals(500, square.getLocation().getValue());
+    }
+
+    @Test
+    public void checkRandomSquareValue() throws Exception {
+        assertEquals(100, board.getAllSquareCreated().get(5).getLocation().getValue());
     }
 }

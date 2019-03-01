@@ -11,6 +11,24 @@ import java.util.logging.Logger;
 
 public class Board {
 
+    //Variables to get rid of magic number error check
+    private final long brownHousesValue = 60L;
+    private final long lblueHouseValue1 = 100L;
+    private final long lblueHouseValue2 = 120L;
+    private final long pinkHouseValue1 = 140L;
+    private final long pinkHouseValue2 = 160L;
+    private final long orangeHouseValue1 = 180L;
+    private final long orangeHouseValue2 = 200L;
+    private final long redHouseValue = 220L;
+    private final long redHouseValue2 = 240L;
+    private final long yellowHouseValue = 260L;
+    private final long yellowHouseValue2 = 280L;
+    private final long greenHouseValue = 300L;
+    private final long greenHouseValue2 = 320L;
+    private final long dblueHouseValue = 350L;
+    private final long dblueHouseValue2 = 400L;
+    private final long stationValue = 200L;
+
     //predefining location names for the board generation
     private ArrayList<String> locationNames = new
    ArrayList<>(Arrays.asList("Start",
@@ -24,6 +42,18 @@ public class Board {
 /*Green*/   "Regent Street", "Oxford Street", "Bond Street",
 /*DBlue*/   "Park Lane", "Mayfair"
     ));
+
+    private ArrayList<Long> values = new ArrayList<>(Arrays.asList(0L,
+           /*Brown*/   brownHousesValue, brownHousesValue,
+           /*Station*/ stationValue,
+           /*LBlue*/   lblueHouseValue1, lblueHouseValue1, lblueHouseValue2,
+           /*PINK*/    pinkHouseValue1, pinkHouseValue1, pinkHouseValue2,
+           /*Orange*/  orangeHouseValue1, orangeHouseValue1, orangeHouseValue2,
+           /*Red*/     redHouseValue, redHouseValue, redHouseValue2,
+           /*Yellow*/  yellowHouseValue, yellowHouseValue, yellowHouseValue2,
+           /*Green*/   greenHouseValue, greenHouseValue, greenHouseValue2,
+           /*DBlue*/   dblueHouseValue, dblueHouseValue2
+           ));
 
     private int boardSquares;
     private final int width;
@@ -61,7 +91,8 @@ public class Board {
             // board depending on its size
             for (int i = 0; i < boardSquares; i++) {
                 String locNames = locationNames.get(i);
-                Location location = new Location(locNames);
+                Long locValues = values.get(i);
+                Location location = new Location(locNames, locValues);
                 Square square = new Square(i, location);
                 boardtiles.add(square);
             }
