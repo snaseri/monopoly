@@ -1,7 +1,6 @@
 package com.nsa.cm6123.assessment.monopoly;
 
 import com.nsa.cm6123.assessment.monopoly.board.Board;
-import com.nsa.cm6123.assessment.monopoly.board.Square;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 

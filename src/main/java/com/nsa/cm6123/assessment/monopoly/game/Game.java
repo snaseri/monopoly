@@ -1,6 +1,7 @@
 package com.nsa.cm6123.assessment.monopoly.game;
 
 import com.nsa.cm6123.assessment.monopoly.board.Board;
+import com.nsa.cm6123.assessment.monopoly.board.Square;
 import com.nsa.cm6123.assessment.monopoly.player.Player;
 
 import java.io.IOException;
@@ -134,6 +135,7 @@ public class Game {
                 }
             }
             this.propertyPurchase();
+            this.updateNetworth();
 
             if (players.get(player1ListIndex).getPasses() == numOfLoops &&
                 players.get(player2ListIndex).getPasses() == numOfLoops &&
@@ -144,15 +146,17 @@ public class Game {
         }
     }
 
-//    public long getPlayerPortfolio(final Player player) {
-//        for (Square square : board.getAllSquareCreated()) {
-//            if (square.getLocation().getOwner().equals(player)){
-//                player.();player.getBalance() +
-//                        square.getLocation().getValue();
-//            }
-//            return networth;
-//        }
-//    }
+    public void updateNetworth() {
+        for (Player player : players) {
+            player.setNetworth(player.getBalance());
+            for (Square square : board.getAllSquareCreated()) {
+                if (square.getLocation().getOwner().equals(player)) {
+                    player.setNetworth(player.getNetworth() +
+                            square.getLocation().getValue());
+                }
+            }
+        }
+    }
 }
 
 

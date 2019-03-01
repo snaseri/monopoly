@@ -113,4 +113,31 @@ public class GameTest {
                 player2.getBalance());
     }
 
+    @Test
+    public void updateNetworth() throws Exception {
+        player1.setBalance(600);
+        //This square is worth 400
+        game.getBoard().getAllSquareCreated().get(23).
+                getLocation().setOwner(player1);
+        game.updateNetworth();
+        assertEquals(1000,
+                player1.getNetworth());
+    }
+
+    @Test
+    public void updateNetworthWith3SquaresOwned() throws Exception {
+        player1.setBalance(600);
+        //This square is worth 400, 350, 320
+        game.getBoard().getAllSquareCreated().get(23).
+                getLocation().setOwner(player1);
+        game.getBoard().getAllSquareCreated().get(22).
+                getLocation().setOwner(player1);
+        game.getBoard().getAllSquareCreated().get(21).
+                getLocation().setOwner(player1);
+        game.updateNetworth();
+        assertEquals(1670,
+                player1.getNetworth());
+    }
+
+
 }
