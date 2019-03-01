@@ -74,7 +74,6 @@ public class Player {
         this("Top Hat", STARTING_BALANCE, 0, 0);
     }
 
-
     public String getToken() {
         return token;
     }
@@ -104,7 +103,7 @@ public class Player {
         Dice dice = new Dice();
         int n = dice.roll();
         position = position + n;
-        if (position > boardSize) {
+        if (position >= boardSize) {
             position = position - boardSize;
 
             logger.info("Player with Token " + token + " rolled a "

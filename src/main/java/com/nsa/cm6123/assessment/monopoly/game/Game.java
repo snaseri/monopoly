@@ -61,24 +61,51 @@ public class Game {
         return players.get(num);
     }
 
+    // This method checks to see if the square that the
+    // player is on doesn't have a owner and the player
+    // has enough money to purchase
+    public void propertyPurchase() {
+        for (Player player : players) {
+            if (board.getSquareByPosition(player.getPosition()).
+                    getLocation().getOwner().getToken().equals("None") &&
+                    player.getBalance() >= board.getSquareByPosition(player.
+                            getPosition()).getLocation().getValue()) {
+                long newPlayerBalance = player.getBalance() -
+                board.getSquareByPosition(player.getPosition()).
+                        getLocation().getValue();
+                player.setBalance(newPlayerBalance);
+                board.getSquareByPosition(player.getPosition()).getLocation()
+                        .setOwner(player);
+                logger.info("Player " + player.getToken() + " purchased " +
+                board.getSquareByPosition(player.getPosition()).
+                        getLocation().getName() +
+                " and now has a balance of " + player.getBalance());
+            }
+        }
+    }
+
     public Board getBoard() {
         return board;
     }
+
+    public void circutReward(final Player player) {
+        player.setBalance(player.getBalance() + circutReward);
+    }
+
     public void loopAroundBoard(final int numOfLoops) {
         while (loop < numOfLoops) {
 
             for (Player player : players) {
                 if (!player.rollAndMove()) {
-                    board.getAllSquareCreated().get(
-                            player.getPosition()).getLocation();
                     continue;
-
                 } else {
                     int playerPasses = player.getPasses() + 1;
                     player.setPasses(playerPasses);
-                    player.setBalance(player.getBalance() + circutReward);
+                    this.circutReward(player);
                 }
             }
+            this.propertyPurchase();
+
             if (players.get(player1ListIndex).getPasses() == numOfLoops &&
                 players.get(player2ListIndex).getPasses() == numOfLoops &&
                 players.get(player3ListIndex).getPasses() == numOfLoops &&

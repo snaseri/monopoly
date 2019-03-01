@@ -40,7 +40,32 @@ public class GameTest {
 
     @Test
     public void add200BalanceAfterCircut() throws Exception {
-        game.loopAroundBoard(1);
+        game.circutReward(game.getPlayer(0));
         assertEquals(400, game.getPlayers().get(0).getBalance());
     }
+
+    @Test
+    public void propertyPurchase() throws Exception {
+        game.getPlayer(0).setPosition(1);
+        game.propertyPurchase();
+        assertEquals(140, game.getPlayer(0).getBalance());
+    }
+
+    @Test
+    public void PurchasedPropertyIsntBoughtByAnotherPlayer() throws Exception {
+        game.getPlayer(0).setPosition(1);
+        game.propertyPurchase();
+        game.getPlayer(1).setPosition(1);
+        game.propertyPurchase();
+        assertEquals(200, game.getPlayer(1).getBalance());
+    }
+
+    @Test
+    public void startSquareCannotBePurchased() throws Exception {
+        game.getPlayer(0).setPosition(0);
+        game.propertyPurchase();
+        assertEquals(game.getBoard().getSquareByPosition(0).getLocation().
+                getOwner().getToken(), "Start");
+    }
+
 }

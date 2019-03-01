@@ -59,6 +59,10 @@ public class Board {
     private final int width;
     private final int length;
     private ArrayList<Square> boardtiles = new ArrayList<>();
+    //Presetting ownerof start square with a unique player
+    //so start square cannot be purchased by other players.
+    private static Player start = new Player("Start", 0,
+            0, 0);
 
     private ArrayList squares = new ArrayList();
 
@@ -96,6 +100,7 @@ public class Board {
                 Square square = new Square(i, location);
                 boardtiles.add(square);
             }
+            boardtiles.get(0).getLocation().setOwner(start);
         }
 
     }
@@ -110,6 +115,10 @@ public class Board {
     // as an ArrayList
     public ArrayList<Square> getAllSquareCreated() {
         return boardtiles;
+    }
+
+    public Square getSquareByPosition(final int pos) {
+        return boardtiles.get(pos);
     }
 
     public ArrayList<String> getLocationNames() {

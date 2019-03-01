@@ -31,4 +31,10 @@ public class BoardTest {
         assertEquals(24, board.getAllSquareCreated().size());
     }
 
+    @Test
+    public void getSquareByPosition() throws Exception {
+        Board board = new Board(6,6);
+        assertEquals(board.getAllSquareCreated().get(2), board.getSquareByPosition(2));
+    }
+
 }
