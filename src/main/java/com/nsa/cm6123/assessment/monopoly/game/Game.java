@@ -143,6 +143,16 @@ public class Game {
             }
         }
     }
+
+//    public long getPlayerPortfolio(final Player player) {
+//        for (Square square : board.getAllSquareCreated()) {
+//            if (square.getLocation().getOwner().equals(player)){
+//                player.();player.getBalance() +
+//                        square.getLocation().getValue();
+//            }
+//            return networth;
+//        }
+//    }
 }
 
 

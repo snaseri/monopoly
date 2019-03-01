@@ -36,17 +36,21 @@ public class Player {
     private int position;
     private final int boardSize = 24;
     private int pass;
+    private long networth;
 
     private static final long STARTING_BALANCE = 200L;
 
 
     public Player(final String aToken, final long aBalance,
-                  final int aPosition, final int aPass) {
+                  final int aPosition, final int aPass,
+                  final long aNetworth) {
         this.token = aToken;
         this.balance = aBalance;
         this.position = aPosition;
         //pass checks to see how many times a player has been around a board
         this.pass = aPass;
+        //Networth is players cash + location
+        this.networth = aNetworth;
         logger.info("Player created: Token = " + token
                 + ", aBalance = " + balance);
         // you can log like this using the methods, or...
@@ -58,20 +62,25 @@ public class Player {
 // Player Methods
 
     public Player(final String aToken, final long aBalance,
+                  final int aPosition, final int aPass) {
+        this(aToken, STARTING_BALANCE,  aPosition, aPass, STARTING_BALANCE);
+    }
+
+    public Player(final String aToken, final long aBalance,
                   final int aPosition) {
-        this(aToken, STARTING_BALANCE,  aPosition, 0);
+        this(aToken, STARTING_BALANCE,  aPosition, 0, STARTING_BALANCE);
     }
 
     public Player(final String aToken, final long aBalance) {
-        this(aToken, STARTING_BALANCE,  0, 0);
+        this(aToken, STARTING_BALANCE,  0, 0, STARTING_BALANCE);
     }
 
     public Player(final String aToken) {
-        this(aToken, STARTING_BALANCE, 0, 0);
+        this(aToken, STARTING_BALANCE, 0, 0, STARTING_BALANCE);
     }
 
     public Player() {
-        this("Top Hat", STARTING_BALANCE, 0, 0);
+        this("Top Hat", STARTING_BALANCE, 0, 0, STARTING_BALANCE);
     }
 
     public String getToken() {
@@ -96,6 +105,14 @@ public class Player {
 
     public void setPasses(final int num) {
         this.pass = num;
+    }
+
+    public long getNetworth() {
+        return networth;
+    }
+
+    public void setNetworth(final long newNetworth) {
+        networth = newNetworth;
     }
 
     // this method returns true if player has gone around the board

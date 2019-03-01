@@ -115,4 +115,15 @@ public class PlayerTest {
         topHat.setPasses(2);
         assertEquals(2, topHat.getPasses());
     }
+
+    @Test
+    public void getNetworth() {
+        assertEquals(200, topHat.getNetworth());
+    }
+
+    @Test
+    public void setNetworth() {
+        topHat.setNetworth(5);
+        assertEquals(5, topHat.getNetworth());
+    }
 }
